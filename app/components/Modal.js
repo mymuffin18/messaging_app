@@ -24,7 +24,7 @@ const Modal = ({ isOpen, setIsOpen, user, setUser }) => {
         });
 
         const userResponse = await response.json();
-
+        console.log("userResponse", userResponse);
         setUser({
           identifier: userResponse.user.identifier,
           nickname: userResponse.user.nickname,
