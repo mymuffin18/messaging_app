@@ -9,16 +9,6 @@ import CustomChannelHeader from "./CustomChannelHeader";
 const CustomizedApp = () => {
   const [showSettings, setShowSettings] = useState(false);
   const [currentChannelUrl, setCurrentChannelUrl] = useState(null);
-  const store = useSendbirdStateContext();
-
-  const sdk = sendbirdSelectors.getSdk(store);
-  const onEditProfileSuccess = async (user) => {
-    console.log("user", user);
-    // updateUserProfile(user.nickname, user.plainProfileUrl)
-    //   .then((user) => console.log("updated user", user))
-    //   .catch((error) => console.log("error", error));
-    return null;
-  };
 
   const updateMessageCount = async () => {
     try {
@@ -53,7 +43,9 @@ const CustomizedApp = () => {
       <div className="sendbird-app__channellist-wrap">
         <ChannelList
           allowProfileEdit={true}
-          onChannelSelect={(channel) => setCurrentChannelUrl(channel.url || "")}
+          onChannelSelect={(channel) =>
+            setCurrentChannelUrl(channel?.url || "")
+          }
           onProfileEditSuccess={onEditProfileSuccess}
           renderHeader={() => <CustomChannelHeader />}
         />
